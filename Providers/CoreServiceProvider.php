@@ -46,6 +46,7 @@ class CoreServiceProvider extends ServiceProvider
         $loader->alias(DataTable::class, DataTableServiceOverride::class);
 
         $this->app->register(RouteServiceProvider::class);
+        $this->app->register(FortifyServiceProvider::class);
         $this->registerCommands();
     }
 

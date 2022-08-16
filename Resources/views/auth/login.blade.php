@@ -1,4 +1,4 @@
-@extends('layouts.auth.app')
+@extends('core::layouts.auth.app')
 
 @section('form')
     <form action="{{ route('login') }}" method="POST" class="instant_reload_form">

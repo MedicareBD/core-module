@@ -1,4 +1,4 @@
-@extends('layouts.admin.master')
+@extends('core::layouts.admin.master')
 
 @section('body')
     <section class="section">
