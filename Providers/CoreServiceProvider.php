@@ -5,7 +5,6 @@ namespace Modules\Core\Providers;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
-use Modules\Core\Console\DownloadModuleCommand;
 use Modules\Core\Console\InstallCommand;
 use Modules\Core\Overriders\DataTableServiceOverride;
 use Yajra\DataTables\Services\DataTable;
@@ -53,7 +52,6 @@ class CoreServiceProvider extends ServiceProvider
     private function registerCommands()
     {
         $this->commands([
-            DownloadModuleCommand::class,
             InstallCommand::class
         ]);
     }
