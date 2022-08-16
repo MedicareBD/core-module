@@ -1,0 +1,35 @@
+{
+    "name": "medicarebd/core-module",
+    "type": "laravel-module",
+    "description": "Core module of WoveSoft system",
+    "require": {
+        "php": "^8.0.2",
+        "bishwajitcadhikary/laravel-menu": "^1.0",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "maatwebsite/excel": "^3.1",
+        "niklasravnsborg/laravel-pdf": "^4.1",
+        "wovoschool/laravel-setting": "^1.2",
+        "symfony/process": "^6.1",
+        "yajra/laravel-datatables": "^9.0"
+    },
+    "authors": [
+        {
+            "name": "Bishwajit Adhikary",
+            "email": "bishwajitcadhikary@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Core\\": ""
+        }
+    },
+    "minimum-stability": "dev"
+}
