@@ -29,7 +29,10 @@
     "autoload": {
         "psr-4": {
             "Modules\\Core\\": ""
-        }
+        },
+        "files": [
+            "Helpers/helpers.php"
+        ]
     },
     "minimum-stability": "dev"
 }

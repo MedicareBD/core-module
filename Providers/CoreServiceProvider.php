@@ -3,9 +3,11 @@
 namespace Modules\Core\Providers;
 
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Modules\Core\Console\InstallCommand;
+use Modules\Core\Http\Middleware\MenuMiddleware;
 use Modules\Core\Overriders\DataTableServiceOverride;
 use Yajra\DataTables\Services\DataTable;
 
@@ -32,6 +34,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        $this->registerMiddlewares();
     }
 
     /**
@@ -47,7 +50,13 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(FortifyServiceProvider::class);
+        $this->app->register(EventServiceProvider::class);
         $this->registerCommands();
+    }
+
+    private function registerMiddlewares(){
+        $router = $this->app->make(Router::class);
+        $router->pushMiddlewareToGroup('web', MenuMiddleware::class);
     }
 
     private function registerCommands()
