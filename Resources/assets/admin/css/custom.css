@@ -1,0 +1,28 @@
+.custom-control-label{
+    cursor: pointer;
+}
+
+.required:after {
+    content: ' *';
+    color: red;
+}
+
+.optional:after {
+    content: ' (optional)';
+    color: #d7d7d7;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    padding-left: 15px !important;
+}
+
+textarea.form-control{
+    min-height: 100px !important;
+}
+
+.jconfirm-icon-c .fas,
+.jconfirm-icon-c .far,
+.jconfirm-icon-c .fab,
+.jconfirm-icon-c .fal{
+    font-size: unset!important;
+}
