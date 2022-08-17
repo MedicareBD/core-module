@@ -1,6 +1,7 @@
 @extends('core::layouts.auth.app')
 
 @section('form')
+    {{ Module::asset('core:') }}
     <form action="{{ route('login') }}" method="POST" class="instant_reload_form">
         @csrf
         <div class="form-group">

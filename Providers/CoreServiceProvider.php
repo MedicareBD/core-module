@@ -36,6 +36,10 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
         $this->registerMiddlewares();
+
+        $this->publishes([
+            __DIR__.'/../Resources/assets' => public_path('/'),
+        ], 'assets');
     }
 
     /**
@@ -103,9 +107,9 @@ class CoreServiceProvider extends ServiceProvider
 
         $sourcePath = module_path($this->moduleName, 'Resources/views');
 
-        $this->publishes([
-            $sourcePath => $viewPath
-        ], ['views', $this->moduleNameLower . '-module-views']);
+//        $this->publishes([
+//            $sourcePath => $viewPath
+//        ], ['views', $this->moduleNameLower . '-module-views']);
 
         $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
     }
