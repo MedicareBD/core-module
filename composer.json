@@ -4,6 +4,7 @@
     "description": "Core module of WoveSoft system",
     "require": {
         "php": "^8.0.2",
+        "laravel/fortify": "^1.13",
         "bishwajitcadhikary/laravel-menu": "^1.0",
         "league/flysystem-aws-s3-v3": "^3.0",
         "maatwebsite/excel": "^3.1",
@@ -11,6 +12,11 @@
         "wovoschool/laravel-setting": "^1.2",
         "symfony/process": "^6.1",
         "yajra/laravel-datatables": "^9.0"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.7",
+        "barryvdh/laravel-ide-helper": "^2.12",
+        "beyondcode/laravel-query-detector": "^1.6"
     },
     "authors": [
         {
@@ -29,10 +35,7 @@
     "autoload": {
         "psr-4": {
             "Modules\\Core\\": ""
-        },
-        "files": [
-            "Helpers/helpers.php"
-        ]
+        }
     },
     "minimum-stability": "dev"
 }

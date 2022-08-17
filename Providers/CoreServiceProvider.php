@@ -53,6 +53,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(FortifyServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
         $this->registerCommands();
+        $this->registerHelpers();
     }
 
     private function registerMiddlewares(){
@@ -66,6 +67,14 @@ class CoreServiceProvider extends ServiceProvider
             InstallCommand::class,
             DataTableCommand::class
         ]);
+    }
+
+    private function registerHelpers()
+    {
+        if (file_exists($file = base_path('Modules/Core/Helpers/helpers.php')))
+        {
+            require $file;
+        }
     }
 
     /**
