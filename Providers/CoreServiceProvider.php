@@ -6,6 +6,7 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Core\Console\DataTableCommand;
 use Modules\Core\Console\InstallCommand;
 use Modules\Core\Http\Middleware\MenuMiddleware;
 use Modules\Core\Overriders\DataTableServiceOverride;
@@ -62,7 +63,8 @@ class CoreServiceProvider extends ServiceProvider
     private function registerCommands()
     {
         $this->commands([
-            InstallCommand::class
+            InstallCommand::class,
+            DataTableCommand::class
         ]);
     }
 
