@@ -47,12 +47,15 @@ class InstallCommand extends Command
             $process->run();
         }
 
-        if ($this->option('demo')){
-            Artisan::call('migrate:fresh --seed');
-            Artisan::call('module:seed');
-        }else{
-            Artisan::call('migrate:fresh');
-        }
+//        if ($this->option('demo')){
+//            Artisan::call('migrate:fresh --seed');
+//            Artisan::call('module:seed');
+//        }else{
+//            Artisan::call('migrate:fresh');
+//        }
+
+        Artisan::call('migrate:fresh --seed');
+        Artisan::call('module:seed');
 
         $this->info('Medicare Installed Successfully');
     }

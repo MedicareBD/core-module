@@ -17,7 +17,7 @@
 }
 
 textarea.form-control{
-    min-height: 100px !important;
+    height: 100px !important;
 }
 
 .jconfirm-icon-c .fas,

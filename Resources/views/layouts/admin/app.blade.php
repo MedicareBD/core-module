@@ -8,13 +8,13 @@
         <!-- Main Content -->
         <div class="main-content">
             <section class="section">
-                @if(!isset($withHeader) || $withHeader)
-                    @hasSection('title')
-                        <div class="section-header">
-                            <h1>@yield('title')</h1>
-                        </div>
-                    @endif
-                @endif
+{{--                @if(!isset($withHeader) || $withHeader)--}}
+{{--                    @hasSection('title')--}}
+{{--                        <div class="section-header">--}}
+{{--                            <h1>@yield('title')</h1>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
+{{--                @endif--}}
 
                 <div class="section-body">
                     @yield('content')
