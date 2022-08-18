@@ -20,6 +20,8 @@
                     @yield('content')
                 </div>
             </section>
+
+            @include('core::layouts.admin.partials.modals')
         </div>
         @include('core::layouts.admin.partials.footer')
     </div>

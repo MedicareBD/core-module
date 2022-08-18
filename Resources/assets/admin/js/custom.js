@@ -408,5 +408,48 @@ $(document).on('click', '.confirm-action', function (e) {
             }
         }
     });
-})
+});
 
+$(document).on('click', '.preview-modal', function(e){
+    e.preventDefault();
+
+    let $this = $(this);
+    let $oldText = $this.html();
+    let $url = $this.attr('href') ?? $this.data('action');
+    let $size = $this.data('size');
+    let $type = $this.data('method') ?? 'GET';
+    let $title = $this.data('title');
+    let $modal = $('#defaultModal');
+    let $modalTitle = $('#defaultModal .modal-title').html($title);
+    let $modalBody = $('#defaultModal .modal-body');
+    let $modalDialog = $('#defaultModal .modal-dialog').addClass($size);
+
+    $.ajax({
+        type: $type,
+        url: $url,
+        accept: 'application/json',
+        beforeSend: function () {
+            $this.attr('disabled', true).addClass('disabled').html($spinner);
+        },
+        success: function(res){
+            $modalBody.html(res);
+            $modal.modal('show');
+
+            $this.html($oldText)
+                .removeClass('disabled')
+                .attr('disabled', false);
+
+        },
+        error: function(xhr){
+            Notify.error(xhr);
+            $this.html($oldText)
+                .removeClass('disabled')
+                .attr('disabled', false);
+        }
+    })
+});
+
+function printable(id) {
+    var e = $("body").html(), a = $("#" + id).clone();
+    $("body").empty().html(a), window.print(), $("body").html(e)
+}
