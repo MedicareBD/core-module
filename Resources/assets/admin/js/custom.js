@@ -341,14 +341,14 @@ $(document).on('click', '.confirm-delete', function (e) {
 $(document).on('click', '.confirm-action', function (e) {
     e.preventDefault();
     let $this = $(this);
-    let $title = $this.data('title') ?? 'Heads Up!';
-    let $message = $this.data('content') ?? 'Are you sure to delete?';
-    let $url = $this.attr('href') || $this.data('action');
-    let $icon = $this.attr('icon') ?? 'fas fa-warning';
-    let $type = $this.attr('method') ?? 'POST';
-    let $btnClass = $this.attr('btnClass') ?? 'btn-red';
+    let $title = $(this).data('title') ?? 'Heads Up!';
+    let $message = $(this).data('content') ?? 'Are you sure?';
+    let $url = $(this).attr('href') ?? $(this).data('action');
+    let $icon = $(this).data('icon') ?? 'fas fa-warning';
+    let $type = $(this).data('method') ?? 'POST';
+    let $btnClass = $(this).data('btnClass') ?? 'btn-red';
 
-    let $oldButtonText = $this.html();
+    let $oldButtonText = $(this).html();
 
     $.confirm({
         title: $title,
