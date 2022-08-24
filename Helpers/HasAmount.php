@@ -21,6 +21,16 @@ trait HasAmount
         return $this->makeAmount();
     }
 
+    protected function startAmount(): Attribute
+    {
+        return $this->makeAmount();
+    }
+
+    protected function endAmount(): Attribute
+    {
+        return $this->makeAmount();
+    }
+
     protected function makeAmount(): Attribute
     {
         return Attribute::make(
