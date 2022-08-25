@@ -54,6 +54,7 @@ class InstallCommand extends Command
 //            Artisan::call('migrate:fresh');
 //        }
 
+        Artisan::call('storage:link');
         Artisan::call('horizon:install');
         Artisan::call('migrate:fresh --seed');
         Artisan::call('module:seed');
