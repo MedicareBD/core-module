@@ -10,7 +10,7 @@ class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
         MenuWasCreated::class => [
-            AddMenuItems::class
-        ]
+            AddMenuItems::class,
+        ],
     ];
 }

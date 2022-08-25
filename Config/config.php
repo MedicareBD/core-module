@@ -4,5 +4,5 @@ return [
     'name' => 'Core',
     'menus' => [
 
-    ]
+    ],
 ];

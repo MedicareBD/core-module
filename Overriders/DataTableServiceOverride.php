@@ -344,12 +344,12 @@ abstract class DataTableServiceOverride implements DataTableButtons
     protected function getAjaxResponseData()
     {
         $this->request()->merge([
-            'start'  => 0,
+            'start' => 0,
             'length' => -1,
         ]);
 
         $response = app()->call([$this, 'ajax']);
-        $data     = $response->getData(true);
+        $data = $response->getData(true);
 
         return $data['data'];
     }
@@ -415,12 +415,12 @@ abstract class DataTableServiceOverride implements DataTableButtons
     {
         set_time_limit(3600);
 
-        $ext      = '.' . strtolower($this->excelWriter);
+        $ext = '.'.strtolower($this->excelWriter);
         $callback = $this->fastExcel ?
             ($this->fastExcelCallback ? $this->fastExcelCallback() : null)
             : $this->excelWriter;
 
-        return $this->buildExcelFile()->download($this->getFilename() . $ext, $callback);
+        return $this->buildExcelFile()->download($this->getFilename().$ext, $callback);
     }
 
     /**
@@ -475,7 +475,7 @@ abstract class DataTableServiceOverride implements DataTableButtons
      */
     protected function filename()
     {
-        return class_basename($this) . '_' . date('YmdHis');
+        return class_basename($this).'_'.date('YmdHis');
     }
 
     /**
@@ -514,8 +514,8 @@ abstract class DataTableServiceOverride implements DataTableButtons
                 $column['title'] = $column['title'] ?? $column['data'];
                 $collection->push(new Column($column));
             } else {
-                $data          = [];
-                $data['data']  = $column;
+                $data = [];
+                $data['data'] = $column;
                 $data['title'] = $column;
                 $collection->push(new Column($data));
             }
@@ -532,12 +532,12 @@ abstract class DataTableServiceOverride implements DataTableButtons
     public function csv()
     {
         set_time_limit(3600);
-        $ext      = '.' . strtolower($this->csvWriter);
+        $ext = '.'.strtolower($this->csvWriter);
         $callback = $this->fastExcel ?
             ($this->fastExcelCallback ? $this->fastExcelCallback() : null)
             : $this->csvWriter;
 
-        return $this->buildExcelFile()->download($this->getFilename() . $ext, $callback);
+        return $this->buildExcelFile()->download($this->getFilename().$ext, $callback);
     }
 
     /**
@@ -555,7 +555,7 @@ abstract class DataTableServiceOverride implements DataTableButtons
             return $this->mPdf();
         }
 
-        return $this->buildExcelFile()->download($this->getFilename() . '.pdf', $this->pdfWriter);
+        return $this->buildExcelFile()->download($this->getFilename().'.pdf', $this->pdfWriter);
     }
 
     /**
@@ -566,15 +566,14 @@ abstract class DataTableServiceOverride implements DataTableButtons
     public function snappyPdf()
     {
         /** @var \Barryvdh\Snappy\PdfWrapper $snappy */
-        $snappy      = app('snappy.pdf.wrapper');
-        $options     = config('datatables-buttons.snappy.options');
+        $snappy = app('snappy.pdf.wrapper');
+        $options = config('datatables-buttons.snappy.options');
         $orientation = config('datatables-buttons.snappy.orientation');
 
         $snappy->setOptions($options)->setOrientation($orientation);
 
-        return $snappy->loadHTML($this->printPreview())->download($this->getFilename() . '.pdf');
+        return $snappy->loadHTML($this->printPreview())->download($this->getFilename().'.pdf');
     }
-
 
     /**
      * PDF version of the table using print preview blade template.
@@ -583,11 +582,11 @@ abstract class DataTableServiceOverride implements DataTableButtons
      */
     public function mPdf()
     {
-        $mpdf      = app('mpdf.wrapper');
-        $options     = config('datatables-buttons.snappy.options');
+        $mpdf = app('mpdf.wrapper');
+        $options = config('datatables-buttons.snappy.options');
         $orientation = config('datatables-buttons.snappy.orientation');
 
-        return $mpdf->loadHTML($this->printPreview(), $options)->download($this->getFilename() . '.pdf');
+        return $mpdf->loadHTML($this->printPreview(), $options)->download($this->getFilename().'.pdf');
     }
 
     /**

@@ -3,22 +3,21 @@
 namespace Modules\Core\Helpers;
 
 use Auth;
-use Illuminate\Http\Request;
 use Storage;
 
 trait HasUpload
 {
     private function upload($file, $oldFile = null)
     {
-        if (is_file($file)){
+        if (is_file($file)) {
             $ext = $file->getClientOriginalExtension();
             $filename = now()->timestamp.'.'.$ext;
 
-            $path = 'uploads/' . Auth::id() . date('/y') . '/' . date('m') . '/';
+            $path = 'uploads/'.Auth::id().date('/y').'/'.date('m').'/';
             $filePath = $path.$filename;
 
             $oldFile = str($oldFile)->remove('storage/');
-            if($oldFile) {
+            if ($oldFile) {
                 if (Storage::disk(config('filesystems.default'))->exists($oldFile)) {
                     Storage::disk(config('filesystems.default'))->delete($oldFile);
                 }
@@ -28,6 +27,7 @@ trait HasUpload
 
             return 'storage/'.$filePath;
         }
+
         return null;
     }
 

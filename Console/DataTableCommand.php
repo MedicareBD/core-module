@@ -7,7 +7,6 @@ use Nwidart\Modules\Commands\GeneratorCommand;
 use Nwidart\Modules\Support\Config\GenerateConfigReader;
 use Nwidart\Modules\Support\Stub;
 use Nwidart\Modules\Traits\ModuleCommandTrait;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
 class DataTableCommand extends GeneratorCommand
@@ -42,13 +41,13 @@ class DataTableCommand extends GeneratorCommand
         $module = $this->laravel['modules']->findOrFail($this->getModuleName());
 
         return (new Stub('/datatable.stub', [
-            'NAME'              => $this->getModelName(),
-            'NAMESPACE'         => $this->getClassNamespace($module),
-            'CLASS'             => $this->getClass(),
-            'LOWER_NAME'        => $module->getLowerName(),
-            'MODULE'            => $this->getModuleName(),
-            'STUDLY_NAME'       => $module->getStudlyName(),
-            'MODULE_NAMESPACE'  => $this->laravel['modules']->config('namespace'),
+            'NAME' => $this->getModelName(),
+            'NAMESPACE' => $this->getClassNamespace($module),
+            'CLASS' => $this->getClass(),
+            'LOWER_NAME' => $module->getLowerName(),
+            'MODULE' => $this->getModuleName(),
+            'STUDLY_NAME' => $module->getStudlyName(),
+            'MODULE_NAMESPACE' => $this->laravel['modules']->config('namespace'),
         ]))->render();
     }
 
@@ -58,7 +57,7 @@ class DataTableCommand extends GeneratorCommand
 
         $modelPath = GenerateConfigReader::read('datatable');
 
-        return $path . $modelPath->getPath() . '/' . $this->getModelName() . 'DataTable.php';
+        return $path.$modelPath->getPath().'/'.$this->getModelName().'DataTable.php';
     }
 
     private function getModelName()

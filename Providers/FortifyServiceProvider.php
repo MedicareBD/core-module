@@ -2,16 +2,16 @@
 
 namespace Modules\Core\Providers;
 
-use Modules\Core\Actions\Fortify\CreateNewUser;
-use Modules\Core\Actions\Fortify\ResetUserPassword;
-use Modules\Core\Actions\Fortify\UpdateUserPassword;
-use Modules\Core\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Fortify;
+use Modules\Core\Actions\Fortify\CreateNewUser;
+use Modules\Core\Actions\Fortify\ResetUserPassword;
+use Modules\Core\Actions\Fortify\UpdateUserPassword;
+use Modules\Core\Actions\Fortify\UpdateUserProfileInformation;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -22,14 +22,15 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse
+        {
             public function toResponse($request)
             {
                 return $request->wantsJson()
                     ? response()->json([
                         'message' => __('Logged In Successfully'),
                         'redirect' => \Auth::user()->hasRole('customer') ? null : route('admin.dashboard.index'),
-                        'two_factor' => false
+                        'two_factor' => false,
                     ])
                     : redirect()->route('admin.dashboard.index');
             }
@@ -58,6 +59,6 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        Fortify::loginView(fn() => view('core::auth.login'));
+        Fortify::loginView(fn () => view('core::auth.login'));
     }
 }

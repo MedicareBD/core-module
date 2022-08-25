@@ -4,8 +4,8 @@ namespace Modules\Core\Console;
 
 use Artisan;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
@@ -42,7 +42,7 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->info('Medicare Installing...');
-        if (!base_path('.env')){
+        if (! base_path('.env')) {
             $process = new Process(['cp .env.example .env']);
             $process->run();
         }

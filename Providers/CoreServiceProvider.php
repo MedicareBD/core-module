@@ -5,7 +5,6 @@ namespace Modules\Core\Providers;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 use Modules\Core\Console\DataTableCommand;
 use Modules\Core\Console\InstallCommand;
 use Modules\Core\Http\Middleware\MenuMiddleware;
@@ -15,12 +14,12 @@ use Yajra\DataTables\Services\DataTable;
 class CoreServiceProvider extends ServiceProvider
 {
     /**
-     * @var string $moduleName
+     * @var string
      */
     protected $moduleName = 'Core';
 
     /**
-     * @var string $moduleNameLower
+     * @var string
      */
     protected $moduleNameLower = 'core';
 
@@ -60,7 +59,8 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerHelpers();
     }
 
-    private function registerMiddlewares(){
+    private function registerMiddlewares()
+    {
         $router = $this->app->make(Router::class);
         $router->pushMiddlewareToGroup('web', MenuMiddleware::class);
     }
@@ -69,14 +69,13 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->commands([
             InstallCommand::class,
-            DataTableCommand::class
+            DataTableCommand::class,
         ]);
     }
 
     private function registerHelpers()
     {
-        if (file_exists($file = base_path('Modules/Core/Helpers/helpers.php')))
-        {
+        if (file_exists($file = base_path('Modules/Core/Helpers/helpers.php'))) {
             require $file;
         }
     }
@@ -89,7 +88,7 @@ class CoreServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            module_path($this->moduleName, 'Config/config.php') => config_path($this->moduleNameLower . '.php'),
+            module_path($this->moduleName, 'Config/config.php') => config_path($this->moduleNameLower.'.php'),
         ], 'config');
 //        $this->mergeConfigFrom(
 //            module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
@@ -103,7 +102,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/' . $this->moduleNameLower);
+        $viewPath = resource_path('views/modules/'.$this->moduleNameLower);
 
         $sourcePath = module_path($this->moduleName, 'Resources/views');
 
@@ -121,7 +120,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/' . $this->moduleNameLower);
+        $langPath = resource_path('lang/modules/'.$this->moduleNameLower);
 
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
@@ -146,10 +145,11 @@ class CoreServiceProvider extends ServiceProvider
     {
         $paths = [];
         foreach (\Config::get('view.paths') as $path) {
-            if (is_dir($path . '/modules/' . $this->moduleNameLower)) {
-                $paths[] = $path . '/modules/' . $this->moduleNameLower;
+            if (is_dir($path.'/modules/'.$this->moduleNameLower)) {
+                $paths[] = $path.'/modules/'.$this->moduleNameLower;
             }
         }
+
         return $paths;
     }
 }

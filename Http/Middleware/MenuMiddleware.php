@@ -1,9 +1,10 @@
 <?php
+
 namespace Modules\Core\Http\Middleware;
 
 use Closure;
-use Modules\Core\Events\MenuWasCreated;
 use Illuminate\Http\Request;
+use Modules\Core\Events\MenuWasCreated;
 
 class MenuMiddleware
 {
@@ -16,7 +17,7 @@ class MenuMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return $next($request);
         }
 
