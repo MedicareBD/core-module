@@ -11,7 +11,8 @@
         "niklasravnsborg/laravel-pdf": "^4.1",
         "wovoschool/laravel-setting": "^1.2",
         "symfony/process": "^6.1",
-        "yajra/laravel-datatables": "^9.0"
+        "yajra/laravel-datatables": "^9.0",
+        "laravel/horizon": "^5.10"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
