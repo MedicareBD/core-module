@@ -11,6 +11,16 @@
 |
 */
 
+use Modules\Core\Http\Controllers\InstallController;
+
 Route::prefix('core')->group(function () {
     Route::get('/', 'CoreController@index');
+});
+
+
+Route::controller(InstallController::class)
+    ->middleware('installed')
+    ->group(function (){
+        Route::get('install', 'index')->name('install.index');
+        Route::post('install/database', 'getDatabaseInformation')->name('install.get-database-information');
 });

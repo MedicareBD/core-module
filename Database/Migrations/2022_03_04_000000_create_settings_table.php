@@ -26,7 +26,6 @@ class CreateSettingsTable extends Migration
             $table->increments('id');
             $table->string($this->key)->index();
             $table->text($this->value);
-            $table->string('lang')->default('en');
         });
     }
 

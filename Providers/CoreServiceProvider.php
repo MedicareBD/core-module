@@ -7,6 +7,8 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Console\DataTableCommand;
 use Modules\Core\Console\InstallCommand;
+use Modules\Core\Http\Middleware\InstalledMiddleware;
+use Modules\Core\Http\Middleware\InstallMiddleware;
 use Modules\Core\Http\Middleware\MenuMiddleware;
 use Modules\Core\Overriders\DataTableServiceOverride;
 use Yajra\DataTables\Services\DataTable;
@@ -63,6 +65,8 @@ class CoreServiceProvider extends ServiceProvider
     {
         $router = $this->app->make(Router::class);
         $router->pushMiddlewareToGroup('web', MenuMiddleware::class);
+        $router->aliasMiddleware('install', InstallMiddleware::class);
+        $router->aliasMiddleware('installed', InstalledMiddleware::class);
     }
 
     private function registerCommands()
